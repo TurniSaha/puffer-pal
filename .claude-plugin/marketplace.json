@@ -1,0 +1,11 @@
+{
+  "name": "puffer-pal",
+  "owner": { "name": "TurniSaha" },
+  "plugins": [
+    {
+      "name": "puffer-pal",
+      "source": "./claude-plugin",
+      "description": "Krillion Daily Dive status and Puffer Party shortcuts for Claude Code."
+    }
+  ]
+}

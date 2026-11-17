@@ -1,0 +1,6 @@
+.build/
+mac/build/
+*.app
+.DS_Store
+node_modules
+.superpowers/
