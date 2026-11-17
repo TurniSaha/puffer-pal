@@ -7,9 +7,33 @@ Claude Code's status line.
 
 Not affiliated with Krillion. The puffer window just shows krillion.io.
 
-## Install
+## Download
 
-Needs macOS 14+ and the Xcode Command Line Tools (`xcode-select --install`).
+Needs macOS 14 or later, on an Apple-silicon or Intel Mac.
+
+1. Download **Puffer-Pal-0.1.0.zip** from the
+   [latest release](https://github.com/TurniSaha/puffer-pal/releases/latest) and open it.
+2. Drag **Puffer Pal** into your **Applications** folder, then open it.
+3. macOS says **"Puffer Pal" Not Opened** because the app isn't signed with a paid Apple
+   developer account. Click **Done** (not Move to Trash).
+4. Open **System Settings → Privacy & Security**, scroll down to the message about Puffer Pal,
+   click **Open Anyway** and enter your password. You only do this once.
+
+The fish appears in the bottom-right corner of your screen. Right-click it and turn on
+**Launch at login** so it's there after a restart.
+
+**The Claude Code part (optional):** in Terminal, run
+
+```sh
+claude plugin marketplace add TurniSaha/puffer-pal
+claude plugin install puffer-pal@puffer-pal
+```
+
+and start a new Claude Code session.
+
+## Build it yourself
+
+Needs the Xcode Command Line Tools (`xcode-select --install`).
 
 ```sh
 git clone https://github.com/TurniSaha/puffer-pal.git
@@ -19,10 +43,8 @@ open ~/Applications/Puffer\ Pal.app
 ```
 
 No Claude Code? Build just the app with `make app` and copy `mac/build/Puffer Pal.app` into
-`~/Applications`.
-
-Then right-click the fish and turn on **Launch at login**. The Claude mod is read straight
-from `claude-plugin/`, so edits there apply at the next Claude Code session.
+`~/Applications`. The Claude mod is read straight from `claude-plugin/`, so edits there apply
+at the next Claude Code session. `make release-zip` builds the download zip.
 
 ## Use
 

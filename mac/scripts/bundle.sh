@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
 # Builds "Puffer Pal.app" into mac/build/, ad-hoc signed.
+# --universal builds for both Apple silicon and Intel (for downloads); default is this Mac only.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-swift build -c release --product PufferPal
-BIN="$(swift build -c release --show-bin-path)/PufferPal"
+if [[ "${1:-}" == "--universal" ]]; then
+  for arch in arm64 x86_64; do swift build -c release --product PufferPal --arch "$arch"; done
+  BIN="build/PufferPal-universal"
+  mkdir -p build
+  lipo -create -output "$BIN" \
+    "$(swift build -c release --arch arm64 --show-bin-path)/PufferPal" \
+    "$(swift build -c release --arch x86_64 --show-bin-path)/PufferPal"
+else
+  swift build -c release --product PufferPal
+  BIN="$(swift build -c release --show-bin-path)/PufferPal"
+fi
 APP="build/Puffer Pal.app"
 WORK="build/icon"
 

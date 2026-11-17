@@ -4,13 +4,17 @@ CLT_LIB := /Library/Developer/CommandLineTools/Library/Developer/usr/lib
 TEST_FLAGS := -Xswiftc -Xfrontend -Xswiftc -disable-cross-import-overlays -Xswiftc -F -Xswiftc $(CLT_FW) -Xlinker -F -Xlinker $(CLT_FW) \
 	-Xlinker -rpath -Xlinker $(CLT_FW) -Xlinker -rpath -Xlinker $(CLT_LIB)
 
-.PHONY: test app install plugin-install plugin-check
+.PHONY: test app release-zip install plugin-install plugin-check
 
 test:
 	cd mac && swift test $(TEST_FLAGS)
 
 app:
 	mac/scripts/bundle.sh
+
+# Universal app zipped for a GitHub Release.
+release-zip:
+	mac/scripts/release.sh
 
 install: app plugin-install
 	mkdir -p "$(HOME)/Applications"
